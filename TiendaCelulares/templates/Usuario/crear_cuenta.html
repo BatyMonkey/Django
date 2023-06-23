@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Celulares</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/9c094d55de.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.min.js"></script>
+  <link rel="stylesheet" href="{% static 'crear_cuenta.css' %}">
+</head>
+<body>
+  <header>
+    <!-- Código del encabezado -->
+  </header>
+  <div class="container-x" id="move-content">
+    <div class="container-all">
+        <div class="container-registrar">
+            <div class="ctn-form1">
+                <h2 class="title">Registro</h2>
+                <form method="POST" id="formulario1 ">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Nombre de usuario</label>
+                        <input class="form-control" type="text" placeholder="Ingrese Nombre de usuario" name="username">
+                        <div class="error">{{ form.errors.username }}</div>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input class="form-control" type="text" placeholder="Ingrese Nombre" name="nombres">
+                        <div class="error">{{ form.errors.nombres }}</div>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        <input class="form-control" type="text" placeholder="Ingrese Apellido" name="apellido">
+                        <div class="error">{{ form.errors.apellido }}</div>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo</label>
+                        <input class="form-control" type="text" placeholder="Ingrese Email" name="email">
+                        <div class="error">{{ form.errors.email }}</div>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input class="form-control" type="password" placeholder="Ingrese Contraseña" name="password1">
+                        <div class="error">{{ form.errors.password1 }}</div>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <label>Repetir Contraseña</label>
+                        <input class="form-control" type="password" placeholder="Repita Contraseña" name="password2">
+                        <div class="error">{{ form.errors.password2 }}</div>
+                        <br>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">GRABAR</button>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  <footer>
+    <!-- Código del pie de página -->
+  </footer>
+  <script src="{% static 'js/jquery.js' %}"></script>
+   <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

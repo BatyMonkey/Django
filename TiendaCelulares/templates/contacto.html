@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tienda</title>
+  <link href="{% static 'contact.css' %}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'pagina_principal' %}">Tienda Celulares</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'registro' %}">Crear cuenta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'acerca' %}">Acerca de nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contacto' %}">Contactanos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'api' %}">Api</a>
+          </li>
+          {% if user.is_authenticated %}
+                <li class="nav-item dropdown d-lg-inline-block mb-3 mb-md-0 ml-md-3">
+                  <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">@{{ user.username | title }}</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a href="{% url 'logout' %}" class="dropdown-item">Cerrar Sesión</a></li>
+                  </ul>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a href="{% url 'login' %}" class="nav-link">Iniciar Sesión</a>
+                </li>
+              {% endif %}
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <form id="contact-form" method="POST" action="">
+      {% csrf_token %}
+      <label for="name">Nombre: *</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="apellido">Apellido: * </label>
+      <input type="text" id="apellido" name="apellido" required>
+
+      <label for="email">Correo electrónico: *</label>
+      <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Please enter a valid email address">
+
+      <label for="numero">Numero de teléfono: *</label>
+      <input type="number" id="numero" name="number" required title="Ingrese un numero de teléfono válido">
+
+      <label for="message">Mensaje: * </label>
+      <textarea id="message" name="message" required></textarea><br>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+  <footer>
+    <div>
+      <p>&copy; 2023 Cellphone Store. Todos los derechos reservados.</p>
+    </div>
+    <div class="redes-sociales">
+      <ul>
+        <li><img src="{% static 'img/icons/facebook-f-brands.svg' %}" alt="facebook" /></li>
+        <li><img src="{% static 'img/icons/google-plus-g-brands.svg' %}" alt="google+" /></li>
+        <li><img src="{% static 'img/icons/instagram-brands.svg' %}" alt="instagram" /></li>
+        <li><img src="{% static 'img/icons/envelope-solid.svg' %}" alt="mail" /></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {%load static%}
+  <title>Registro de Teléfonos</title>
+  <link rel="stylesheet" type="text/css" href="/static/registro.css">
+</head>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'pagina_principal' %}">Tienda Celulares</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'registro' %}">Crear cuenta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'producto' %}">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'acerca' %}">Acerca de nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contacto' %}">Contactanos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'api' %}">Api</a>
+        </li>
+        {% if user.is_authenticated %}
+                <li class="nav-item dropdown d-lg-inline-block mb-3 mb-md-0 ml-md-3">
+                  <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">@{{ user.username | title }}</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a href="{% url 'logout' %}" class="dropdown-item">Cerrar Sesión</a></li>
+                  </ul>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a href="{% url 'login' %}" class="nav-link">Iniciar Sesión</a>
+                </li>
+              {% endif %}
+      </ul>
+    </div>
+  </nav>
+</header>
+<body>
+  <div class="fondo1">
+    <br>
+    <div class="container3 ">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center">Agregar Producto</h1>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="{{ form.nombre.id_for_label }}">Nombre</label>
+                                {{ form.marca }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.precio.id_for_label }}">Precio</label>
+                                {{ form.precio }}
+                            </div>
+                            <div class="form-group">
+                                <label for="{{ form.descripcion.id_for_label }}">Descripción</label>
+                                {{ form.descripcion }}
+                            </div>
+                            <div class="form-group">
+                              <label for="{{ form.disponible.id_for_label }}">Disponible</label>
+                              {{ form.disponible }}
+                          </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_imagen">Imagen</label>
+                                {{ form.imagen }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</body>
+</html>
